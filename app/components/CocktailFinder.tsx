@@ -79,6 +79,13 @@ const dummyRecipes = [
     ingredients:["ウォッカ 45ml","ライムジュース 10ml","ジンジャーエール 120ml"],
     image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Moscow_Mule_at_Rye%2C_San_Francisco.jpg/500px-Moscow_Mule_at_Rye%2C_San_Francisco.jpg",
   },
+  {
+    id:12,
+    name:"マティーニ",
+    base:"ジン",
+    ingredients:["ジン 45ml","ベルモット 15ml","オリーブ 1個","レモンピール 1片"],
+    image:"https://www.asahibeer.co.jp/cocktail/search/image/item/2000000181.jpg",
+  },
 ];
 
 const baseOptions = [
