@@ -72,6 +72,13 @@ const dummyRecipes = [
     ingredients: ["ジン 45ml", "ライムジュース 30ml", "砂糖 1tsp"],
     image: "https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg",
   },
+  {
+    id:11,
+    name:"モスコミュール",
+    base:"ウォッカ",
+    ingredients:["ウォッカ 45ml","ライムジュース 10ml","ジンジャーエール 120ml"],
+    image:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Moscow_Mule_at_Rye%2C_San_Francisco.jpg/500px-Moscow_Mule_at_Rye%2C_San_Francisco.jpg",
+  },
 ];
 
 const baseOptions = [
