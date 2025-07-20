@@ -2,11 +2,11 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { dummyRecipes } from "../../components/recipes";
 import { notFound } from "next/navigation";
 
-// 正しいPagePropsの定義を使用
+// 正しいPagePropsの定義を使用（Next.js 15対応）
 interface PageProps {
-  params: {
+  params: Promise<{
     cocktailId: string;
-  };
+  }>;
 }
 
 // メタデータを動的に生成
@@ -14,7 +14,8 @@ export async function generateMetadata(
   { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const id = Number(params.cocktailId);
+  const { cocktailId } = await params;
+  const id = Number(cocktailId);
   const recipe = dummyRecipes.find(r => r.id === id);
 
   if (!recipe) {
@@ -34,8 +35,9 @@ export async function generateMetadata(
   };
 }
 
-export default function CocktailDetail({ params }: PageProps) {
-  const id = Number(params.cocktailId);
+export default async function CocktailDetail({ params }: PageProps) {
+  const { cocktailId } = await params;
+  const id = Number(cocktailId);
   const recipe = dummyRecipes.find(r => r.id === id);
 
   if (!recipe) return notFound();
