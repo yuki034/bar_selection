@@ -1,7 +1,40 @@
+import { Metadata, ResolvingMetadata } from 'next';
 import { dummyRecipes } from "../../components/recipes";
 import { notFound } from "next/navigation";
 
-export default function CocktailDetail({ params }: { params: { cocktailId: string } }) {
+// 正しいPagePropsの定義を使用
+interface PageProps {
+  params: {
+    cocktailId: string;
+  };
+}
+
+// メタデータを動的に生成
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const id = Number(params.cocktailId);
+  const recipe = dummyRecipes.find(r => r.id === id);
+
+  if (!recipe) {
+    return {
+      title: 'カクテルが見つかりません',
+    };
+  }
+
+  return {
+    title: `${recipe.name} - Cocktail Recipe Finder`,
+    description: recipe.description,
+    openGraph: {
+      title: recipe.name,
+      description: recipe.description,
+      images: [recipe.image],
+    },
+  };
+}
+
+export default function CocktailDetail({ params }: PageProps) {
   const id = Number(params.cocktailId);
   const recipe = dummyRecipes.find(r => r.id === id);
 
