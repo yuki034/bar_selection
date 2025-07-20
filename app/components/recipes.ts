@@ -95,4 +95,12 @@ export const dummyRecipes = [
     image:"https://www.asahibeer.co.jp/cocktail/search/image/item/2000000181.jpg",
     description: "ジンとベルモットを合わせた、世界的に有名なスタンダードカクテル。",
   },
-]; 
+  {
+    id:13,
+    name:"ソルティドッグ",
+    base:"ウォッカ",
+    ingredients:["ウォッカ 45ml","グレープフルーツジュース 60ml","塩 少々"],
+    image:"https://otokonokakurega.com/wp-content/uploads/2022/06/78805a221a988e79ef3f42d7c5bfd418-20.jpeg.webp",
+    description:"爽やかなグレープフルーツジュースとウォッカを合わせた、すっきりとした味わいのカクテル。グラスの縁にまぶした塩が、ほのかな苦味と果実の甘酸っぱさを引き立て、クセになるバランスの一杯です。",
+  }
+];

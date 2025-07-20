@@ -23,4 +23,4 @@ export default function CocktailDetail({ params }: { params: { cocktailId: strin
       </div>
     </div>
   );
-} 
+}
