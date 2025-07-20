@@ -20,7 +20,15 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(to bottom, #92400e, #78350f);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #92400e, #78350f);
 }
