@@ -14,7 +14,7 @@ export default function CocktailFinder() {
   useEffect(() => {
     const savedFavorites = localStorage.getItem("cocktail-favorites");
     const savedHistory = localStorage.getItem("cocktail-search-history");
-    
+
     if (savedFavorites) {
       setFavorites(JSON.parse(savedFavorites));
     }
@@ -76,7 +76,7 @@ export default function CocktailFinder() {
         {/* メインコンテンツ */}
         <div className="flex-1 flex flex-col min-h-screen">
           <header className="bg-amber-950 shadow p-6 flex flex-col items-center gap-4">
-            <h1 className="text-3xl font-bold mb-2 text-amber-100">Cocktail Recipe Finder</h1>
+            <h1 className="text-3xl font-bold mb-2 text-amber-100">カクテルCOMPASS</h1>
             <div className="flex flex-col sm:flex-row gap-2 w-full max-w-xl">
               <input
                 type="text"
@@ -122,8 +122,8 @@ export default function CocktailFinder() {
                         <li className="text-gray-400">...</li>
                       )}
                     </ul>
-                    <Link 
-                      href={`/cocktail/${recipe.id}`} 
+                    <Link
+                      href={`/cocktail/${recipe.id}`}
                       className="mt-2 px-3 py-1 bg-amber-700 text-amber-50 rounded hover:bg-amber-800 transition"
                     >
                       詳細を見る

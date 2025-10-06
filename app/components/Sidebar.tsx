@@ -10,7 +10,7 @@ interface SidebarProps {
   favorites: number[];
   onToggleFavorite: (id: number) => void;
 }
-
+[]
 const baseOptions = [
   "すべてのベース",
   "ジン",

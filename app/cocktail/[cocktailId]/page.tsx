@@ -25,7 +25,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${recipe.name} - Cocktail Recipe Finder`,
+    title: `${recipe.name} - カクテルCOMPASS`,
     description: recipe.description,
     openGraph: {
       title: recipe.name,

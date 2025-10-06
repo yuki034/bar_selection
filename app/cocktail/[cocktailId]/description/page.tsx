@@ -25,7 +25,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${recipe.name} - 詳細説明 - Cocktail Recipe Finder`,
+    title: `${recipe.name} - 詳細説明 - カクテルCOMPASS`,
     description: recipe.description,
   };
 }
