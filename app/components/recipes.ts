@@ -1,4 +1,13 @@
-export const dummyRecipes = [
+export type Cocktail = {
+  id: number;
+  name: string;
+  base: string;
+  ingredients: string[];
+  image: string;
+  description: string;
+};
+
+export const recipes: Cocktail[] = [
   {
     id: 1,
     name: "ジントニック",
