@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { dummyRecipes } from "./recipes";
+import { recipes } from "./recipes";
+import { Cocktail } from "./recipes";
 import Sidebar from "./Sidebar";
 
 export default function CocktailFinder() {
@@ -9,6 +10,27 @@ export default function CocktailFinder() {
   const [base, setBase] = useState("");
   const [favorites, setFavorites] = useState<number[]>([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const [cocktails, setCocktails] = useState<Cocktail[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // カクテルデータを読み込み
+  useEffect(() => {
+    const loadCocktails = async () => {
+      try {
+        setLoading(true);
+        // APIからではなく、ローカルのレシピデータを使用
+        setCocktails(recipes);
+      } catch (err) {
+        setError('カクテルデータの読み込みに失敗しました');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCocktails();
+  }, []);
 
   // ローカルストレージからお気に入りと検索履歴を読み込み
   useEffect(() => {
@@ -52,12 +74,12 @@ export default function CocktailFinder() {
   };
 
   // 検索・フィルタ処理
-  const filteredRecipes = dummyRecipes.filter((recipe) => {
+  const filteredRecipes = cocktails.filter((recipe) => {
     const matchBase = base === "" || base === "すべてのベース" || recipe.base === base;
     const matchSearch =
       search === "" ||
       recipe.name.includes(search) ||
-      recipe.ingredients.some((ing) => ing.includes(search));
+      recipe.ingredients.some((ing: string) => ing.includes(search));
     return matchBase && matchSearch;
   });
 
@@ -90,7 +112,15 @@ export default function CocktailFinder() {
           
           <main className="flex-1 p-8 overflow-y-auto bg-gradient-to-b from-amber-900 to-amber-800">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto">
-              {filteredRecipes.length === 0 ? (
+              {loading ? (
+                <div className="col-span-full text-center text-amber-100 text-lg">
+                  読み込み中...
+                </div>
+              ) : error ? (
+                <div className="col-span-full text-center text-red-300 text-lg">
+                  {error}
+                </div>
+              ) : filteredRecipes.length === 0 ? (
                 <div className="col-span-full text-center text-amber-100 text-lg">
                   該当するレシピがありません
                 </div>
@@ -115,7 +145,7 @@ export default function CocktailFinder() {
                     <h2 className="text-xl font-semibold mb-1 text-center">{recipe.name}</h2>
                     <div className="text-sm text-gray-500 mb-2">ベース: {recipe.base}</div>
                     <ul className="text-sm mb-2 text-center">
-                      {recipe.ingredients.slice(0, 3).map((ing, idx) => (
+                      {recipe.ingredients.slice(0, 3).map((ing: string, idx: number) => (
                         <li key={idx}>・{ing}</li>
                       ))}
                       {recipe.ingredients.length > 3 && (
