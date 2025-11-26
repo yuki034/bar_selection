@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { dummyRecipes } from "./recipes";
+import { recipes, Cocktail } from "./recipes";
 
 interface SidebarProps {
   selectedBase: string;
@@ -33,8 +33,8 @@ const popularCocktails = [1, 2, 5, 12, 14]; // ジントニック、モヒート
 export default function Sidebar({ selectedBase, onBaseChange, searchHistory, favorites, onToggleFavorite }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const popularRecipes = dummyRecipes.filter(recipe => popularCocktails.includes(recipe.id));
-  const favoriteRecipes = dummyRecipes.filter(recipe => favorites.includes(recipe.id));
+  const popularRecipes = recipes.filter((recipe: Cocktail) => popularCocktails.includes(recipe.id));
+  const favoriteRecipes = recipes.filter((recipe: Cocktail) => favorites.includes(recipe.id));
 
   return (
     <div className={`bg-amber-950 text-amber-100 min-h-screen transition-all duration-300 ${
