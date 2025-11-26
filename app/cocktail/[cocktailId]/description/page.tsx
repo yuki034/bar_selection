@@ -1,5 +1,5 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import { dummyRecipes } from "../../../components/recipes";
+import { recipes, Cocktail } from "../../../components/recipes";
 import { notFound } from "next/navigation";
 
 // 正しいPagePropsの定義を使用（Next.js 15対応）
@@ -16,7 +16,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { cocktailId } = await params;
   const id = Number(cocktailId);
-  const recipe = dummyRecipes.find(r => r.id === id);
+  const recipe = recipes.find((r: Cocktail) => r.id === id);
 
   if (!recipe) {
     return {
@@ -33,7 +33,7 @@ export async function generateMetadata(
 export default async function CocktailDescription({ params }: PageProps) {
   const { cocktailId } = await params;
   const id = Number(cocktailId);
-  const recipe = dummyRecipes.find(r => r.id === id);
+  const recipe = recipes.find((r: Cocktail) => r.id === id);
 
   if (!recipe) return notFound();
 
@@ -46,4 +46,4 @@ export default async function CocktailDescription({ params }: PageProps) {
       </div>
     </div>
   );
-} 
+}
