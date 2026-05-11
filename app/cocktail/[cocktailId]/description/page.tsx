@@ -17,7 +17,7 @@ export async function generateMetadata(
   const { cocktailId } = await params;
   const id = Number(cocktailId);
   const recipe = recipes.find((r: Cocktail) => r.id === id);
-
+  //カクテルを見つけられなかった場合の処理
   if (!recipe) {
     return {
       title: 'カクテルが見つかりません',
@@ -30,6 +30,7 @@ export async function generateMetadata(
   };
 }
 
+//カクテルの詳細説明を表示
 export default async function CocktailDescription({ params }: PageProps) {
   const { cocktailId } = await params;
   const id = Number(cocktailId);
